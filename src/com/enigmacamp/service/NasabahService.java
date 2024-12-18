@@ -85,4 +85,24 @@ public class NasabahService {
                         "dengan saldo sebesar Rp. " + String.format("%,.2f", item.getBalance())));
 
     }
+
+    public void findTheOldest(){
+        System.out.println("=============================== The Oldest ===============================");
+        this.nasabah.stream()
+                .sorted(Comparator.comparing(Nasabah::getAge).reversed())
+                .limit(1)
+                .forEach(item -> System.out.println("Nasabah tertua adalah " + item.getName() + " " +
+                        "dengan usia " + item.getAge()));
+
+    }
+
+    public void findTheYoungest(){
+        System.out.println("=============================== The Youngest ===============================");
+        this.nasabah.stream()
+                .sorted(Comparator.comparing(Nasabah::getAge))
+                .limit(1)
+                .forEach(item -> System.out.println("Nasabah termuda adalah " + item.getName() + " " +
+                        "dengan usia " + item.getAge()));
+
+    }
 }

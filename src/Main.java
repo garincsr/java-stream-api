@@ -16,5 +16,8 @@ public class Main {
         service.findTopBalance();
         service.findLowBalance();
         System.out.println();
+        service.findTheOldest();
+        service.findTheYoungest();
+        System.out.println();
     }
 }
