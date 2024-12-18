@@ -13,5 +13,8 @@ public class Main {
         System.out.println();
         service.creditStat();
         System.out.println();
+        service.findTopBalance();
+        service.findLowBalance();
+        System.out.println();
     }
 }

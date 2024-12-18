@@ -44,4 +44,45 @@ public class NasabahService {
                 .filter(nasabah -> nasabah.getKreditStat().contains("Buruk"))
                 .forEach(s -> System.out.println(s));
     }
+
+    public void findTopBalance(){
+        System.out.println("=============================== Top Balance ===============================");
+        this.nasabah.stream()
+                .sorted(Comparator.comparing(Nasabah::getBalance).reversed())
+                .limit(1)
+                .forEach(item -> System.out.println("Pemilik saldo tertinggi adalah " + item.getName() + " " +
+                        "dengan saldo sebesar Rp. " + String.format("%,.2f", item.getBalance())));
+
+//        double maxBalance = this.nasabah.stream()
+//                .mapToDouble(Nasabah::getBalance)
+//                .max()
+//                .orElse(0.0);
+//        System.out.println("Saldo tertinggi adalah Rp." + String.format("%,.2f", topBalance));
+
+//        List<Nasabah> maxNasabahList = this.nasabah.stream()
+//                .filter(nasabah -> nasabah.getBalance() == topBalance)
+//                .collect(Collectors.toList());
+//        System.out.println(maxNasabahList);
+
+//        if (!maxNasabahList.isEmpty()) {
+//            System.out.println("Nasabah dengan saldo maksimum: ");
+//            maxNasabahList.forEach(nasabah -> {
+//                System.out.println("Nama: " + nasabah.getName());
+//                System.out.println("Saldo: Rp " + String.format("%,.2f", nasabah.getBalance()));
+//                System.out.println("-------------");
+//            });
+//        } else {
+//            System.out.println("Tidak ada nasabah.");
+//        }
+    }
+
+    public void findLowBalance(){
+        System.out.println("=============================== Low Balance ===============================");
+        this.nasabah.stream()
+                .sorted(Comparator.comparing(Nasabah::getBalance))
+                .limit(1)
+                .forEach(item -> System.out.println("Pemilik saldo terendah adalah " + item.getName() + " " +
+                        "dengan saldo sebesar Rp. " + String.format("%,.2f", item.getBalance())));
+
+    }
 }
