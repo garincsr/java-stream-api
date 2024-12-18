@@ -36,15 +36,27 @@ public class NasabahService {
 
     public void creditStat(){
         System.out.println("=============================== Credit Status ===============================");
-        this.nasabah.stream()
+        Double baikCredit = this.nasabah.stream()
                 .filter(nasabah -> nasabah.getKreditStat().contains("Baik"))
-                .forEach(s -> System.out.println(s));
-        this.nasabah.stream()
-                .filter(nasabah -> nasabah.getKreditStat().contains("Netral"))
-                .forEach(s -> System.out.println(s));
-        this.nasabah.stream()
+                .mapToDouble(Nasabah::getBalance)
+                .average()
+                .orElse(0.0);
+        System.out.println("Rata-rata saldo nasabah dengan kredit baik: Rp. " + String.format("%,.2f", baikCredit));
+//                .forEach(s -> System.out.println(s));
+
+        Double netralCredit = this.nasabah.stream()
+                .filter(nasabah -> nasabah.getKreditStat().equalsIgnoreCase("Baik"))
+                .mapToDouble(Nasabah::getBalance)
+                .average()
+                .orElse(0.0);
+        System.out.println("Rata-rata saldo nasabah dengan kredit netral: Rp. " + String.format("%,.2f", netralCredit));
+
+        Double burukCredit = this.nasabah.stream()
                 .filter(nasabah -> nasabah.getKreditStat().contains("Buruk"))
-                .forEach(s -> System.out.println(s));
+                .mapToDouble(Nasabah::getBalance)
+                .average()
+                .orElse(0.0);
+        System.out.println("Rata-rata saldo nasabah dengan kredit buruk: Rp. " + String.format("%,.2f", burukCredit));
     }
 
     public void findTopBalance(){
