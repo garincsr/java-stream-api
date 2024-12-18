@@ -18,7 +18,7 @@ public class NasabahService {
         this.nasabah.add(new Nasabah("Michael De'Santa", 50, 50000.0, "Baik", 43));
         this.nasabah.add(new Nasabah("Kurt Cobaan", 32, 10000.0, "Buruk", 5));
         this.nasabah.add(new Nasabah("Kevin Love", 40, 2300000.0, "Netral", 1));
-        this.nasabah.add(new Nasabah("Mike Tyson", 80, 1200000.0, "Baik", 56));
+        this.nasabah.add(new Nasabah("Mike Tyson", 80, 12000000.0, "Baik", 56));
     }
 
     public void readAllNasabah(){
@@ -148,7 +148,7 @@ public class NasabahService {
     }
 
     public void findElder(){
-        System.out.println("=============================== The Elder ===============================");
+        System.out.println("=============================== The Elder (Above 50) ===============================");
         Predicate<Nasabah> checkElder = age -> {
             if (age.getAge() > 50) {
                 return true;
