@@ -12,7 +12,7 @@ public class NasabahService {
     List<Nasabah> nasabah = new ArrayList<>();
 
     public void addNasabah(){
-        this.nasabah.add(new Nasabah("Garin Caesar", 22, 1000000.0, "Baik", 10));
+        this.nasabah.add(new Nasabah("Garin Caesar", 22, 2300000.0, "Baik", 10));
         this.nasabah.add(new Nasabah("Prabowo Subiyono", 73, 500000.0, "Netral", 32));
         this.nasabah.add(new Nasabah("Lione Messi", 33, 1000000.0, "Buruk", 2));
         this.nasabah.add(new Nasabah("Michael De'Santa", 50, 50000.0, "Baik", 43));
@@ -48,16 +48,25 @@ public class NasabahService {
 
     public void findTopBalance(){
         System.out.println("=============================== Top Balance ===============================");
+        double maxBalance = this.nasabah.stream()
+                .mapToDouble(Nasabah::getBalance)
+                .max()
+                .orElse(0.0);
+
+        Predicate<Nasabah> checkMax = balance -> {
+            if (balance.getBalance() == maxBalance){
+                return true;
+            } else {
+                return false;
+            }
+        };
+
         this.nasabah.stream()
                 .sorted(Comparator.comparing(Nasabah::getBalance).reversed())
-                .limit(1)
+                .filter(checkMax)
                 .forEach(item -> System.out.println("Pemilik saldo tertinggi adalah " + item.getName() + " " +
                         "dengan saldo sebesar Rp. " + String.format("%,.2f", item.getBalance())));
 
-//        double maxBalance = this.nasabah.stream()
-//                .mapToDouble(Nasabah::getBalance)
-//                .max()
-//                .orElse(0.0);
 //        System.out.println("Saldo tertinggi adalah Rp." + String.format("%,.2f", topBalance));
 
 //        List<Nasabah> maxNasabahList = this.nasabah.stream()
@@ -113,5 +122,18 @@ public class NasabahService {
                 .limit(1)
                 .forEach(item -> System.out.println("Nasabah paling loyal adalah" + item.getName() + "" +
                         ", sudah menjadi customer selama " + item.getHowLong() + " tahun"));
+    }
+
+    public void categoryByBalance(){
+        System.out.println("=============================== Category ===============================");
+        this.nasabah.stream()
+                .filter(nasabah -> nasabah.getBalance() < 1000000.0)
+                .forEach($ -> System.out.println("Nasabah dengan saldo dibawah 1 juta: " + $));
+        this.nasabah.stream()
+                .filter(nasabah -> nasabah.getBalance() >= 1000000.0 || nasabah.getBalance() == 10000000.0)
+                .forEach($ -> System.out.println("Nasabah dengan saldo diantara 1 juta sampai 10 juta: " + $));
+        this.nasabah.stream()
+                .filter(nasabah -> nasabah.getBalance() > 10000000.0)
+                .forEach($ -> System.out.println("Nasabah dengan saldo diatas 10 juta: " + $));
     }
 }

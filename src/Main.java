@@ -20,5 +20,7 @@ public class Main {
         service.findTheYoungest();
         System.out.println();
         service.findTheMostLoyal();
+        System.out.println();
+        service.categoryByBalance();
     }
 }
