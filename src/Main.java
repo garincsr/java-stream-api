@@ -19,5 +19,6 @@ public class Main {
         service.findTheOldest();
         service.findTheYoungest();
         System.out.println();
+        service.findTheMostLoyal();
     }
 }

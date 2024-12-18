@@ -17,6 +17,7 @@ public class NasabahService {
         this.nasabah.add(new Nasabah("Lione Messi", 33, 1000000.0, "Buruk", 2));
         this.nasabah.add(new Nasabah("Michael De'Santa", 50, 50000.0, "Baik", 43));
         this.nasabah.add(new Nasabah("Kurt Cobaan", 32, 10000.0, "Buruk", 5));
+        this.nasabah.add(new Nasabah("Kevin Love", 40, 2300000.0, "Netral", 1));
     }
 
     public void readAllNasabah(){
@@ -103,6 +104,14 @@ public class NasabahService {
                 .limit(1)
                 .forEach(item -> System.out.println("Nasabah termuda adalah " + item.getName() + " " +
                         "dengan usia " + item.getAge()));
+    }
 
+    public void findTheMostLoyal(){
+        System.out.println("=============================== The Loyal ===============================");
+        this.nasabah.stream()
+                .sorted(Comparator.comparing(Nasabah::getHowLong).reversed())
+                .limit(1)
+                .forEach(item -> System.out.println("Nasabah paling loyal adalah" + item.getName() + "" +
+                        ", sudah menjadi customer selama " + item.getHowLong() + " tahun"));
     }
 }
