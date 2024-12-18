@@ -12,9 +12,9 @@ public class NasabahService {
     List<Nasabah> nasabah = new ArrayList<>();
 
     public void addNasabah(){
-        this.nasabah.add(new Nasabah("Garin Caesar", 22, 2300000.0, "Baik", 10));
+        this.nasabah.add(new Nasabah("Garin Caesar", 22, 12000000.0, "Baik", 10));
         this.nasabah.add(new Nasabah("Prabowo Subiyono", 73, 500000.0, "Netral", 32));
-        this.nasabah.add(new Nasabah("Lione Messi", 33, 1000000.0, "Buruk", 2));
+        this.nasabah.add(new Nasabah("Lionel Messi", 33, 1000000.0, "Buruk", 2));
         this.nasabah.add(new Nasabah("Michael De'Santa", 50, 50000.0, "Baik", 43));
         this.nasabah.add(new Nasabah("Kurt Cobaan", 32, 10000.0, "Buruk", 5));
         this.nasabah.add(new Nasabah("Kevin Love", 40, 2300000.0, "Netral", 1));
@@ -67,24 +67,6 @@ public class NasabahService {
                 .filter(checkMax)
                 .forEach(item -> System.out.println("Pemilik saldo tertinggi adalah " + item.getName() + " " +
                         "dengan saldo sebesar Rp. " + String.format("%,.2f", item.getBalance())));
-
-//        System.out.println("Saldo tertinggi adalah Rp." + String.format("%,.2f", topBalance));
-
-//        List<Nasabah> maxNasabahList = this.nasabah.stream()
-//                .filter(nasabah -> nasabah.getBalance() == topBalance)
-//                .collect(Collectors.toList());
-//        System.out.println(maxNasabahList);
-
-//        if (!maxNasabahList.isEmpty()) {
-//            System.out.println("Nasabah dengan saldo maksimum: ");
-//            maxNasabahList.forEach(nasabah -> {
-//                System.out.println("Nama: " + nasabah.getName());
-//                System.out.println("Saldo: Rp " + String.format("%,.2f", nasabah.getBalance()));
-//                System.out.println("-------------");
-//            });
-//        } else {
-//            System.out.println("Tidak ada nasabah.");
-//        }
     }
 
     public void findLowBalance(){
@@ -121,7 +103,7 @@ public class NasabahService {
         this.nasabah.stream()
                 .sorted(Comparator.comparing(Nasabah::getHowLong).reversed())
                 .limit(1)
-                .forEach(item -> System.out.println("Nasabah paling loyal adalah" + item.getName() + "" +
+                .forEach(item -> System.out.println("Nasabah paling loyal adalah " + item.getName() +
                         ", sudah menjadi customer selama " + item.getHowLong() + " tahun"));
     }
 
