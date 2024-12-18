@@ -22,5 +22,9 @@ public class Main {
         service.findTheMostLoyal();
         System.out.println();
         service.categoryByBalance();
+        System.out.println();
+        service.findTopFiveByBalance();
+        System.out.println();
+        service.findElder();
     }
 }

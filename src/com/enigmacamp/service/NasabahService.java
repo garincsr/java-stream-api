@@ -18,6 +18,7 @@ public class NasabahService {
         this.nasabah.add(new Nasabah("Michael De'Santa", 50, 50000.0, "Baik", 43));
         this.nasabah.add(new Nasabah("Kurt Cobaan", 32, 10000.0, "Buruk", 5));
         this.nasabah.add(new Nasabah("Kevin Love", 40, 2300000.0, "Netral", 1));
+        this.nasabah.add(new Nasabah("Mike Tyson", 80, 1200000.0, "Baik", 56));
     }
 
     public void readAllNasabah(){
@@ -135,5 +136,29 @@ public class NasabahService {
         this.nasabah.stream()
                 .filter(nasabah -> nasabah.getBalance() > 10000000.0)
                 .forEach($ -> System.out.println("Nasabah dengan saldo diatas 10 juta: " + $));
+    }
+
+    public void findTopFiveByBalance(){
+        System.out.println("=============================== Top 5 Nasabah ===============================");
+        this.nasabah.stream()
+                .sorted(Comparator.comparing(Nasabah::getBalance).reversed())
+                .limit(5)
+                .forEach($ -> System.out.println("Nasabah atas nama " + $.getName() + " " +
+                        "dengan saldo sebesar Rp. " + String.format("%,.2f", $.getBalance())));
+    }
+
+    public void findElder(){
+        System.out.println("=============================== The Elder ===============================");
+        Predicate<Nasabah> checkElder = age -> {
+            if (age.getAge() > 50) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+        this.nasabah.stream()
+                .filter(checkElder)
+                .forEach(people -> System.out.println("Nasabah diatas 50 tahun: " + people.getName() + " dengan usia " + people.getAge() + " tahun"));
     }
 }
