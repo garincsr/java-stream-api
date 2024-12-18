@@ -4,14 +4,14 @@ public class Nasabah {
     private String name;
     private Integer age;
     private Double balance;
-    private String kreditStat;
+    private String creditStat;
     private Integer howLong;
 
     public Nasabah(String name, Integer age, Double balance, String kreditStat, Integer howLong) {
         this.name = name;
         this.age = age;
         this.balance = balance;
-        this.kreditStat = kreditStat;
+        this.creditStat = kreditStat;
         this.howLong = howLong;
     }
 
@@ -40,11 +40,11 @@ public class Nasabah {
     }
 
     public String getKreditStat() {
-        return kreditStat;
+        return creditStat;
     }
 
     public void setKreditStat(String kreditStat) {
-        this.kreditStat = kreditStat;
+        this.creditStat = kreditStat;
     }
 
     public Integer getHowLong() {
@@ -61,7 +61,7 @@ public class Nasabah {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", balance=" + balance +
-                ", kreditStat='" + kreditStat + '\'' +
+                ", kreditStat='" + creditStat + '\'' +
                 ", howLong=" + howLong +
                 '}';
     }

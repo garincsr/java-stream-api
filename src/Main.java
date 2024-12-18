@@ -6,8 +6,12 @@ public class Main {
         System.out.println("=============================== Bank Stream API ===============================");
         NasabahService service = new NasabahService();
         service.addNasabah();
+
         service.readAllNasabah();
         System.out.println();
         service.allNasabahAverageBalance();
+        System.out.println();
+        service.creditStat();
+        System.out.println();
     }
 }
